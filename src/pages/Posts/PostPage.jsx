@@ -13,6 +13,7 @@ import { ChevronLeftIcon } from "@heroicons/react/solid";
 
 const PostPage = () => {
     const { postId } = useParams();
+    console.log({ postId });
 
     const loadingStatus = useSelector(loadingStatusSelector());
     const post = useSelector(postSelector(postId));
