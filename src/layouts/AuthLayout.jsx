@@ -1,7 +1,7 @@
 import React from "react";
 // Librares
 import { useSelector } from "react-redux";
-import { Route, Routes } from "react-router-dom";
+import { Outlet } from "react-router-dom";
 // Components
 import Card from "../components/Card";
 // Pages
@@ -21,11 +21,12 @@ const  AuthLayout = () => {
     return (
         <div className='flex grow flex-col justify-center items-center  dark:text-slate-200 '>
             <Card>
-                <Routes>
-                    <Route path={"login"} element={<LoginPage/>} />
-                    <Route path={"signup"} element={<SignUpPage/>} />
-                    {/*<Redirect to={path + "/signup"} />*/}
-                </Routes>
+              <Outlet/>
+                {/*<Routes>*/}
+                {/*    <Route path={"login"} element={<LoginPage/>} />*/}
+                {/*    <Route path={"signup"} element={<SignUpPage/>} />*/}
+                {/*    /!*<Redirect to={path + "/signup"} />*!/*/}
+                {/*</Routes>*/}
             </Card>
         </div>
     );
