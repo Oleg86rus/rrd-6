@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react'
+import {useNavigate} from 'react-router-dom'
 // Librares
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
@@ -35,7 +36,7 @@ const SignUpPage = () => {
     const [loading, setLoading] = useState(false);
     const [successful, setSuccessful] = useState(false);
     const { message } = useSelector((state) => state.message);
-    // const history = useHistory();
+    const navigate = useNavigate()
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -50,7 +51,7 @@ const SignUpPage = () => {
             .unwrap()
             .then(() => {
                 setSuccessful(true);
-                // history.push("/");
+            navigate('/posts')
             })
             .catch(() => {
                 setSuccessful(false);

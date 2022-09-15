@@ -28,7 +28,7 @@ function App() {
         </Route>
         <Route path="posts" element={<PostsLayout/>}>
           <Route index element={<PostsListPage/>}/>
-          <Route path=":postIXd" element={<PostPage/>}/>
+          <Route path=":postId" element={<PostPage/>}/>
         </Route>
         <Route path="*" element={<Navigate to="/posts"/>}/>
       </Routes>

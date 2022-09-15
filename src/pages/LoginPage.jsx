@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+import {useNavigate} from 'react-router-dom'
+
 // Librares
 import * as Yup from "yup";
 import { useSelector, useDispatch } from "react-redux";
@@ -28,7 +30,7 @@ const initialValues = {
 const LoginPage = () => {
     const [loading, setLoading] = useState(false);
     const { message } = useSelector((state) => state.message);
-    // const history = useHistory();
+    const navigate = useNavigate()
     const dispatch = useDispatch();
 
     useEffect(() => {
@@ -44,6 +46,7 @@ const LoginPage = () => {
         dispatch(login({ username, password }))
             .unwrap()
             .then(() => {
+                navigate('/posts', {replace:true})
                 // history.push(redirect || "/");
             })
             .catch(() => {
