@@ -1,5 +1,5 @@
 import React from "react";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import AuthLayout from "./layouts/AuthLayout";
 import MainPage from "./pages/MainPage";
@@ -14,25 +14,28 @@ import LoginPage from './pages/LoginPage'
 import SignUpPage from './pages/SigupPage'
 
 function App() {
-    return (
-        <div className='min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-150 flex flex-col'>
-            <NavBar />
-            <Routes>
-                <Route index element={<MainPage/>} />
-                <Route path='auth/*' element={<AuthLayout/>} >
-                  <Route path={"login"} element={<LoginPage/>} />
-                  <Route path={"signup"} element={<SignUpPage/>} />
-                </Route>
-                <Route path='/posts/*' element={<PostsLayout/>} >
-                  <Route index element={<PostsListPage />} />
-                  <Route path=':postId' element={<PostPage />} />
-                </Route>
-                {/*<Redirect from='*' to='/' />*/}
-            </Routes>
-
-            <ToastContainer />
-        </div>
-    );
+  return (
+    <div
+      className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-150 flex flex-col">
+      <NavBar/>
+      <Routes>
+        <Route index element={<MainPage/>}/>
+        <Route path="auth" element={<AuthLayout/>}>
+          <Route index element={<Navigate to='/auth/signup'/>}/>
+          <Route path={'login'} element={<LoginPage/>}/>
+          <Route path={'signup'} element={<SignUpPage/>}/>
+          <Route path="*" element={<Navigate to="/auth/signup"/>}/>
+        </Route>
+        <Route path="posts" element={<PostsLayout/>}>
+          <Route index element={<PostsListPage/>}/>
+          <Route path=":postIXd" element={<PostPage/>}/>
+        </Route>
+        <Route path="*" element={<Navigate to="/posts"/>}/>
+      </Routes>
+      
+      <ToastContainer/>
+    </div>
+  )
 }
 const AppWithStoreAndRoutes = withRedux(withRouter(App));
 export default AppWithStoreAndRoutes;
