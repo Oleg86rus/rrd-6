@@ -28,7 +28,11 @@ function App() {
           <Route path="*" element={<Navigate to="/auth/signup"/>}/>
         </Route>
         {/*<ProtectedRoute path="posts" element={<PostsLayout/>}>*/}
-        <Route path="posts" element={<ProtectedRoute><PostsLayout/></ProtectedRoute>}>
+        <Route path="posts" element={
+          <ProtectedRoute redirectTo={'/auth/login'}>
+            <PostsLayout/>
+          </ProtectedRoute>
+        }>
           <Route index element={<PostsListPage/>}/>
           <Route path=":postId" element={<PostPage/>}/>
         </Route>
